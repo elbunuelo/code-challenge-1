@@ -2,6 +2,16 @@
 ### Matter Supply Co.
 ### Technologist (Web Technologies)
 
+## Github Dependencies
+
+For the project to work, you must create a Github app, it will be used for the
+oAuth flow, so that the user can log in and be able to create new blog posts.
+The steps to achieve this are described in the [Github
+Documentation](https://docs.github.com/en/developers/apps/building-github-apps/creating-a-github-app).
+
+Once you've created the app take note of the Client ID and Secret, these must
+be set as Environment variables on the back end.
+
 ## Front End  Dependencies
 
 | Name | Description |
@@ -63,6 +73,12 @@ bundle install
 bin/rails server
 ```
 
+### Environment Variables
+
+GITHUB_KEY: Client id for the github app
+GITHUB_SECRET: Client secret for the github app
+FRONTEND_URL: Base url for the front end (e.g. http://localhost:3001)
+
 ## Front End
 
 The front end is composed by three main views that respond to four different
@@ -75,22 +91,10 @@ routes.
 | `/gist/:id` | Detail | Displays the content of the gist identified by `id`. |
 | `/form` | Form | Displays the form to create a new gist under the logged in user. |
 
-## Intro
 
-The idea is that you display the skills required to build scalable frontend applications. In this code challenge, you will be asked to build a single page application in the framework React JS, consuming web services and building a presentable UI.
+### Environment Variables
 
-You will be required to make a trade-off between visual aesthetics, scalability, test coverage, and feature completeness. When we grade your code challenge, we will take that into account — none of your work gets discarded regardless if it was completed or not. We are aware that the time we propose for this code challenge is short to deliver a complete solution.
-
-The first aspect that we pay attention to is the user experience: load times, clarity of interactions, thoughtful and well executed animations, as well as an eye for detail. We place a strong focus on quality and one major indicator of quality is the quality of the user interface.
-
-The second aspect is the structure of your application. While this application doesn't necessarily warrant one of the big frameworks, we'd still like to see how you would implement this as part of a larger scale initiative if time permits. At Matter Supply, we're often tasked with architecting larger frontend initiatives.
-
-The third aspect is testing. We're not looking for 100% coverage or much coverage at all. But we'd like to see how you fare in setting up basic testing structures.
-
-We would love to get to know you in-depth, so feel free to provide us code samples of your work in addition to this challenge. Github repos or code snippets work just fine. Don’t hesitate to add your thoughts, as all is accountable for evaluation.
-
-Overall, we expect you to document your work. A well documented approach in this instance is better than a complete solution as we want to understand your thinking process and your ability to work with others within a distributed team overseas.
-
+REACT_APP_BACKEND: Base url for the back end (e.g. http://localhost:3000)
 
 ## Questions
 
