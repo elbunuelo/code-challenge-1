@@ -1,0 +1,37 @@
+.gists {
+  margin-top: 1.5rem;
+}
+
+.gists .loading {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.gist .content {
+  width: 100%;
+}
+
+.gist .snippet {
+  max-width: 95%;
+  max-height: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.gist {
+  padding: 2rem 0;
+  border-top: 1px solid #dedede;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gist .action {
+  font-size: 2rem;
+  color: #1D1FDD;
+}
+

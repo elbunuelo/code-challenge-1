@@ -1,0 +1,28 @@
+.gist-detail {
+  padding-top: 3rem;
+  padding: 2rem;
+  height: 100%;
+}
+
+.gist-detail .title {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-size: 6rem;
+  font-weight: normal;
+  color: #1D1FDD;
+}
+
+.gist-detail .user {
+    margin-top: 1.5rem;
+
+}
+
+.gist-detail .user .username {
+  font-size: 1.2rem;
+}
+
+.gist-detail .content {
+  font-size: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #ccc;
+}

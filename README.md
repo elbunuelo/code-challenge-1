@@ -2,6 +2,78 @@
 ### Matter Supply Co.
 ### Technologist (Web Technologies)
 
+## Front End  Dependencies
+
+| Name | Description |
+| - | - |
+| react-dotenv | Used to manage configuration options as environment variables |
+| @fortawesome/\* | Font Awesome icons  |
+| @octokit/rest | Used to consume the github rest API |
+| dayjs | Used to process format dates |
+| formik | Used to process the post creation form |
+| yup | Used for form validation in conjunction with formik |
+| react-markdown / rehype-raw | Used to display markdown content with embedded
+html |
+| react-router-dom | Used for managing routing |
+
+## Back End Dependencies
+
+| Name | Description |
+| - | - |
+| ominauth-github | Used for handling github oAuth flow |
+| rack-cors | Used for enabling cross site requests between the front end and
+back end |
+| dotenv-rails | Used to manage configuration options as environment variables |
+
+## Back End
+
+The back end is written in ruby on rails, and it is only used to handle
+github's oauth flow, and save the user information in the session storage.
+
+In order to share a session and allow requests from the front end, CORS had to
+be configured on the back end. This specific instance is fairly open, allowing
+all requests and credential sharing with the front end url. In a production
+setting, it would be recommended to limit the resources and headers allowed by
+CORS.
+
+Only two controllers compose the back end:
+
+### Sessions controller
+
+| Method | Endpoint | Description |
+| - | - | - |
+| GET | `/auth/github/callback` | Last step of the github oauth flow, receives the user information and stores it in session storage |
+| POST | `/logout` | Clears the user session storage for effectively logging the user out of the application |
+
+### Config controller
+
+| Method | Endpoint | Description |
+| - | - | - |
+| GET | `/config` | Retrieves the configuration object containing the authorization link and, if the user is logged in, the user information returned by github during the oauth flow  |
+
+### Setting up and running the back end
+
+The following instructions require ruby to be avilable on the machine they will
+be executed on. They should also be executed from the project's root directory.
+
+```
+cd backend
+gem install rails
+bundle install
+bin/rails server
+```
+
+## Front End
+
+The front end is composed by three main views that respond to four different
+routes.
+
+| Route | View | Description |
+| - | - | - |
+| `/` | Home | Displays the home page of the application. |
+| `/user/:username` | Home | Displays the public gists created by the user identified by `:username` on the home page. |
+| `/gist/:id` | Detail | Displays the content of the gist identified by `id`. |
+| `/form` | Form | Displays the form to create a new gist under the logged in user. |
 
 ## Intro
 
@@ -19,53 +91,54 @@ We would love to get to know you in-depth, so feel free to provide us code sampl
 
 Overall, we expect you to document your work. A well documented approach in this instance is better than a complete solution as we want to understand your thinking process and your ability to work with others within a distributed team overseas.
 
-## Challenge
-
-We're transporting you back to the early 2000's – we're building a quick blog. We're asking you to build an application with two pages:
-
-- Blog posts, to display a list blog posts and a short excerpt, and
-- Post detail, to display a full blog post.
-
-The backend for this blog are Github Gists. The idea is that you can enter  a username to look up on Github and the index page (blog posts) will display excerpts of all the user saved Gists. The post detail page will then display the full content of the gist.
-
-Blog posts page must be searchable, and Post details page must be able to show its formatted Markdown as HTML in the case Gists content was saved with `.md` extension.
-
-## Requirements
-
-### Markup/UI implementation
-
-Paying attention to details is important, so is using good UI patterns at the moment of implementing a design. In this repository you'll find some files to support your work on:
-
-- Design: `/support-files/designs/`
-- Fonts: `/support-files/fonts/`
-
-You'll be challenged to implement a clean UX using those files to base your experience on.
-
-### As a reader (non logged user)
-
-- As a reader, I want to be able to see a list of blog posts that a writer has posted on Github in the form of Gists.
-- As a reader, I want to be able to select a post on the index page and see the post details, it must be presented in HTML if Gist was a Markdown file.
-- As a reader, I want to be able to navigate from post to post, easily reading the next post.
-- As a reader, I want to be able to navigate back to the index page from a post so that I can select a different post to read.
-
-### As awritter (logged in user)
-
-- As a writer, I want to be able to post a Gist to Github and have that post show up on my blog so that a reader can read the new post.
-- As a writer, I want to be able to make updates to a post by updating the Gist, so that I can correct typos and make content updates.
 
 ## Questions
 
 - What are your thoughts around continuous integration, where & how you would deploy this application?
+
+```
+I believe that there aren't many projects that run on a server that wouldn't
+benefit from having a CI/CD pipeline attached. The immediate feedback that you
+get from running the tests as soon as the pull request is created is extremely
+valuable, and having automated deployment is a must-have for projects of any
+size.
+
+A project like this one could be initially deployed to a PaaS solution such as
+Heroku, which provides a good level of abstraction over AWS services for a
+relatively low price. If the project caught on, and more control was needed,
+then I would transition it to AWS or another similar IaaS service for more
+granular access to the configuration details and greater control over the
+different resources required by the project.
+```
+
+
 - What do you think you would do differently if you had 2 weeks to complete this assignment and no requirement to use Github. What would your backend solution look like?
-- How and where do you feel like this application should be deployed to?
+
+```
+I would definitely include a lot more tests in the application!
+
+Using gists as a backend is a pretty clever solution to the problem, but
+it makes you dependent on a third party API and requires that your users have
+github accounts, limiting it to a very specific segment of the population.
+
+The back end would only need to have login capabilities and a BlogPost model
+with a many-to-one relationship with a User, in order to match the
+functionality already implemented in the challenge. This should be trivial to
+implement using any popular back end framework such as Rails, Express or Django.
+
+```
+
 - Are you happy with your own solutions? If yes, which parts do you think are really well done, if not, what would you want to change?
 
-## Delivery
+```
+I'm fairly happy with the result, given the amount of time I was able to
+dedicate to working on the challenge. The code is well structured and readable,
+and I would consider the solution feature complete.
 
-Feel free to deliver this as your standard NPM/Yarn type of installation. Docker is fine as well. We expect delivery as a Zip file or from a public Git repository. (You can fork this repository as a starting point)
+I would have liked to devote more time to the UX aspect of the challenge. There
+are a lot of instances where the data returned by github could be cached in
+order to avoid unnecessary round trips to the API, thus making the app much
+faster.
 
-## Thanks
+```
 
-We really want to thank you for taking the time to run through this code challenge. We value your time immensely. If you have any suggestions as to how we could improve this exercise, please let us know.
-
-Again, thanks! And happy coding :)

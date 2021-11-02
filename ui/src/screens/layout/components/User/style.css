@@ -1,0 +1,14 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.avatar {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 3.5rem;
+  margin-right: 1rem;
+}
+

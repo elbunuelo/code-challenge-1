@@ -1,0 +1,23 @@
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 3rem;
+}
+
+.top-bar .logo {
+  font-weight: bold;
+}
+
+.top-bar .user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-bar .logout, .top-bar .login {
+  cursor: pointer;
+  font-weight: bold;
+}

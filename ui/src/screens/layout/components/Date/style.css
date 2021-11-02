@@ -1,0 +1,9 @@
+.date-container .time-ago {
+  color: #1D1FDD;
+}
+
+.date-container .publication-date::after {
+  content: '•';
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
